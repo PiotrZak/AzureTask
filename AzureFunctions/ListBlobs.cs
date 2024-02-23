@@ -30,8 +30,8 @@ namespace AzureFunctions
             log.LogInformation(req.Name);
             return await _httpFunctionExecutor.ExecuteAsync(async () =>
             {
-                var users = await _mediator.Send(req);
-                return new OkObjectResult(users);
+                var blobStoragefiles = await _mediator.Send(req);
+                return new OkObjectResult(blobStoragefiles);
             });
         }
    }
