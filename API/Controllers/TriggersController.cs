@@ -24,9 +24,7 @@ public class AzureFunctions: ControllerBase
     public async Task<IActionResult> TriggerAzureFunction()
     {
         // Replace <function_url> with the URL of your Azure Function
-        var functionUrl = "http://localhost:5017/api/ListBlobs?containerName=blobContainer";
-
-        //var truck = await _mediator.Send(new GetTruckQuery(truckId));
+        var functionUrl = "http://localhost:7071/api/ListBlobs?Name=blobcontainer";
 
         try
         {
@@ -49,11 +47,12 @@ public class AzureFunctions: ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> SendMessageToQueue([FromBody] string messageContent)
+    public async Task<IActionResult> SendMessageToQueue()
     {
         try
         {
-            // Replace "myqueue" with the name of your Azure Queue
+            string messageContent = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
+
             var queueName = "queue";
             var queue = _queueClient.GetQueueReference(queueName);
             await queue.CreateIfNotExistsAsync();
